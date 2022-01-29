@@ -24,14 +24,10 @@ jobs:
         git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-    - name: G config file
-      run: |
-        git clone https://github.com/wandduse/openwrt-wanuse
-        cd openwrt-wanuse
-        mv .config ~/openwrt
     - name: Generate config file
       run: |
         cd openwrt
+        wget https://github.com/wandduse/openwrt-wanuse/blob/main/.config
         ls -a
         1make defconfig
     - name: Download package
