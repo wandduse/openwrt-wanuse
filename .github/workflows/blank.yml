@@ -44,6 +44,13 @@ jobs:
       with:
         name: OpenWrt
         path: openwrt/bin
+    - name: Organize files
+      id: organize     
+      run: |
+        cd openwrt/bin/targets/*/*
+        rm -rf packages
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+        echo "::set-output name=status::success"    
     - name: Upload firmware to cowtransfer
       id: cowtransfer
       if: steps.organize.outputs.status == 'success' && !cancelled()
