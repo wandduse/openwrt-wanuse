@@ -44,18 +44,7 @@ jobs:
       with:
         name: OpenWrt
         path: openwrt/bin
-    - name: Organize files
-      id: organize     
+    - name: Upload firmware to cowtransfer      
       run: |
-        cd openwrt/bin/targets/*/*
-        rm -rf packages
-        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-        echo "::set-output name=status::success"    
-    - name: Upload firmware to cowtransfer
-      id: cowtransfer
-      if: steps.organize.outputs.status == 'success' && !cancelled()
-      run: |
-        curl -fsSL git.io/file-transfer | sh
-        ./transfer cow --block 2621440 -s -p 64 --no-progress ${FIRMWARE} 2>&1 | tee cowtransfer.log
-        echo "::warning file=cowtransfer.com::$(cat cowtransfer.log | grep https)"
-        echo "::set-output name=url::$(cat cowtransfer.log | grep https | cut -f3 -d" ")"     
+        curl -sL https://git.io/cowtransfer | sh
+        ./cowtransfer-uploader -s /openwrt/bin
