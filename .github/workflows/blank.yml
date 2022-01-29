@@ -47,4 +47,4 @@ jobs:
     - name: Upload firmware to cowtransfer      
       run: |
         curl -sL https://git.io/cowtransfer | sh
-        ./cowtransfer-uploader -s /openwrt/bin
+        ./cowtransfer-uploader -s ~/openwrt/bin
