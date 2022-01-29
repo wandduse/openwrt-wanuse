@@ -28,7 +28,7 @@ jobs:
       run: |
         cd openwrt
         ls -a
-        1make defconfig
+        make defconfig
     - name: Download package
       run: |
         cd openwrt && make download -j8
