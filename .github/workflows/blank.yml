@@ -25,6 +25,7 @@ jobs:
         ./scripts/feeds install -a
     - name: Generate config file
       run: |
+        mv .config openwrt/.config
         cd openwrt
         make defconfig
     - name: Download package
