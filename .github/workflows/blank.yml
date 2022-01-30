@@ -22,6 +22,7 @@ jobs:
         cd openwrt
         git clone https://github.com/fw876/helloworld package/helloworld
         git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
+        git clone https://github.com/coolsnowwolf/lede/tree/master/package/lean/luci-app-turboacc package/luci-app-turboacc
         ./scripts/feeds update -a
         ./scripts/feeds install -a
     - name: Generate config file
