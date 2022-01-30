@@ -37,7 +37,7 @@ jobs:
     - name: Build
       run: |
         cd openwrt
-        make -j$(nproc)
+        make -j$(nproc) V=s
     - name : Upload artifact
       uses: actions/upload-artifact@master
       with:
